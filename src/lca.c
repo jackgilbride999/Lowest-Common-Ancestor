@@ -1,12 +1,7 @@
 // A recursive C program to find LCA of two nodes n1 and n2. 
 #include <stdio.h> 
 #include <stdlib.h> 
-
-struct node 
-{ 
-	int data; 
-	struct node* left, *right; 
-}; 
+#include "lca.h"
 
 /* Function to find LCA of n1 and n2. The function assumes that both 
 n1 and n2 are present in BST */
