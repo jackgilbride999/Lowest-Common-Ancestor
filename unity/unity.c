@@ -1746,12 +1746,12 @@ void UnityDefaultTestRun(UnityTestFunction Func, const char* FuncName, const int
     UNITY_EXEC_TIME_START();
     if (TEST_PROTECT())
     {
-        setUp();
+     //   setUp();
         Func();
     }
     if (TEST_PROTECT())
     {
-        tearDown();
+      //  tearDown();
     }
     UNITY_EXEC_TIME_STOP();
     UnityConcludeTest();

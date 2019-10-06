@@ -29,7 +29,7 @@ struct node* newNode(int data)
 	return(node); 
 } 
 
-/* Driver program to test lca() */
+/* Driver program to test lca()
 int main() 
 { 
 	// Let us construct the BST shown in the above figure 
@@ -55,4 +55,4 @@ int main()
 
 	getchar(); 
 	return 0; 
-} 
+} */

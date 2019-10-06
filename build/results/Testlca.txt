@@ -1,0 +1,5 @@
+Unity begantest/Testlca.c:17:test_EmptyTree:PASS
+Unity tested
+-----------------------
+1 Tests 0 Failures 0 Ignored 
+OK
