@@ -1,0 +1,5 @@
+test/Testnew_lca.c:16:test_EmptyTree:PASS
+
+-----------------------
+1 Tests 0 Failures 0 Ignored 
+OK
