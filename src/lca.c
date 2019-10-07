@@ -1,7 +1,8 @@
-// A recursive C program to find LCA of two nodes n1 and n2. 
-#include <stdio.h> 
-#include <stdlib.h> 
-#include "lca.h"
+// A recursive C program to find LCA of two nodes n1 and n2.
+// Assumes that all nodes are unique
+#include <stdio.h> ;
+#include <stdlib.h> ;
+#include "lca.h";
 
 /* C program to find LCA of n1 and n2 using one traversal of Binary Tree. 
 It handles all cases even when n1 or n2 is not there in Binary Tree */
@@ -12,6 +13,8 @@ struct node* newNode(int key)
 	struct node* node = (struct node*)malloc(sizeof(struct node)); 
 	node->key = key; 
 	node->left = node->right = NULL; 
+		printf("Created node with key %d\n", key);
+
 	return node; 
 } 
 
