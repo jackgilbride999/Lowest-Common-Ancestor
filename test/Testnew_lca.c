@@ -60,6 +60,87 @@ void test_SingleNodeTree(void){
     free(lca);
 }
 
+/*
+    Test get_lca for a two node tree. All tests should return NULL as
+    both nodes must share an ancestor but a node cannot be an ancestor
+    of itself. Therefore there is not a third node that both nodes can
+    share.
+*/
+void test_TwoNodeTree(void){
+    // two zero nodes, with ints as zero, leaning left
+    struct node* root = new_node(0);
+    root -> left = new_node(0);
+    struct node * lca = get_lca(root, 0, 0);
+    TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    free(lca);
+    free(root->left);
+    free(root);
+
+    // two zero nodes, with ints as zero, leaning right
+    root = new_node(0);
+    root -> right = new_node(0);
+    lca = get_lca(root, 0, 0);
+    TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    free(lca);
+    free(root->right);
+    free(root);
+
+    // two non-zero equal nodes, with ints as node parameters, leaning left
+    root = new_node(2);
+    root -> left = new_node(2);
+    lca = get_lca(root, 2, 2);
+    TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    free(lca);
+    free(root->left);
+    free(root);
+
+    // two non-zero equal nodes, with ints as node parameters, leaning right
+    root = new_node(2);
+    root -> right = new_node(2);
+    lca = get_lca(root, 2, 2);
+    TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    free(lca);
+    free(root->right);
+    free(root);
+
+    // two non-zero non-equal nodes, with ints as node parameters, leaning left
+    root = new_node(1);
+    root -> left = new_node(2);
+    lca = get_lca(root, 1, 2);
+    TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    free(lca);
+    free(root->left);
+    free(root);
+
+    // two non-zero non-equal nodes, with ints as node parameters, leaning right
+    root = new_node(1);
+    root -> right = new_node(2);
+    lca = get_lca(root, 1, 2);
+    TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    free(lca);
+    free(root->right);
+    free(root);
+
+    // two non-zero non-equal nodes, with ints NOT as node parameters, leaning left
+    root = new_node(1);
+    root -> left = new_node(2);
+    lca = get_lca(root, 3, 4);
+    TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    free(lca);
+    free(root->left);
+    free(root);
+
+    // two non-zero non-equal nodes, with ints NOT as node parameters, leaning right
+    root = new_node(1);
+    root -> right = new_node(2);
+    lca = get_lca(root, 3, 4);
+    TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    free(lca);
+    free(root->right);
+    free(root);
+}
+
+
 int main(void){
     UNITY_BEGIN();
     RUN_TEST(test_EmptyTree);
