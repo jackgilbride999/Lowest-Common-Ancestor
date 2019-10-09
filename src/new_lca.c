@@ -10,17 +10,23 @@ struct node* new_node(int key)
 	return node; 
 } 
 
-struct node * get_lca_recursive(struct node * this, int x, int y){
+struct node * get_lca_recursive(struct node * this, int x, int y, int* v1, int* v2){
     if(this == NULL){
         // end of recursion, return NULL
         return NULL;
     }
-    if(this->key == x || this->key == y){
+    if(this->key == x){
         // key has been matched, return non-NULL value
+        *v1 = 1;
         return this;
     }
-    struct node * lca_left = get_lca_recursive(this->left, x, y);
-    struct node * lca_right = get_lca_recursive(this->right, x, y);
+    if(this->key == y){
+        // key has been matched, return non-NULL value
+        *v2 = 1;
+        return this;
+    }
+    struct node * lca_left = get_lca_recursive(this->left, x, y, v1, v2);
+    struct node * lca_right = get_lca_recursive(this->right, x, y, v1, v2);
     if(lca_left!=NULL && lca_right!=NULL){
         // key has been matched on both left and right subtrees, this is LCA
         return this;
@@ -31,15 +37,30 @@ struct node * get_lca_recursive(struct node * this, int x, int y){
     }
 }
 
+int find(struct node *this, int k){
+    if(this==NULL){
+        return 0;
+    }
+
+    if(this->key == k ||  find(this->left, k) || find(this->right, k)){
+        return 1;
+    }
+
+    return 0;
+
+}
+
 struct node * get_lca(struct node * root, int x, int y){
-    struct node * result = get_lca_recursive(root, x, y);
+
+    int v1 = 0;
+    int v2 = 0;
+    struct node * result = get_lca_recursive(root, x, y, &v1, &v2);
     if(result==NULL){
         // LCA has not been found if NULL or either of the keys was returned
         return NULL;
     }
-  //  printf("Key is %d\n", result->key);
-    if(result->key == x || result -> key == y){
-        return NULL;
+    if(v1 && v2 || v1 && find(result, y) || v2 && find(result, x)){
+        return result;
     }
-    return result;
+    return NULL;
 }
