@@ -141,21 +141,30 @@ void test_TwoNodeTree(void){
 }
 
 /*
-    Test get_lca for a three node tree. This is the first function
+    Test get_lca for a three node balanced tree. This is the first function
     where some tests should pass, when the function gets passed the
     keys of the root's two children.
 */
-void test_ThreeNodeTree(void){
-     // two zero nodes, with ints as zero, leaning left
+void test_ThreeNodeBalancedTree(void){
+     // three distinct values in the nodes
     struct node* root = new_node(0);
     root -> left = new_node(1);
     root -> right = new_node(2);    
     struct node * lca = get_lca(root, 1, 2);
     TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 0, "LCA of three node tree did not have expected value");
-    free(lca);
     free(root->left);
     free(root->right);
-    free(root);   
+    free(root);
+
+    // three more distinct values in the nodes
+    root = new_node(0);
+    root -> left = new_node(1);
+    root -> right = new_node(2);    
+    lca = get_lca(root, 1, 2);
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 0, "LCA of three node tree did not have expected value");
+    free(root->left);
+    free(root->right);
+    free(root);     
 }
 
 
@@ -164,6 +173,6 @@ int main(void){
     RUN_TEST(test_EmptyTree);
     RUN_TEST(test_SingleNodeTree);
     RUN_TEST(test_TwoNodeTree);
-    RUN_TEST(test_ThreeNodeTree);
+    RUN_TEST(test_ThreeNodeBalancedTree);
     return UNITY_END();
 }

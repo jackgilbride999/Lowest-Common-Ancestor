@@ -1,7 +1,7 @@
-test/Testnew_lca.c:164:test_EmptyTree:PASS
-test/Testnew_lca.c:165:test_SingleNodeTree:PASS
-test/Testnew_lca.c:166:test_TwoNodeTree:PASS
-test/Testnew_lca.c:167:test_ThreeNodeTree:PASS
+test/Testnew_lca.c:175:test_EmptyTree:PASS
+test/Testnew_lca.c:176:test_SingleNodeTree:PASS
+test/Testnew_lca.c:177:test_TwoNodeTree:PASS
+test/Testnew_lca.c:178:test_ThreeNodeBalancedTree:PASS
 
 -----------------------
 4 Tests 0 Failures 0 Ignored 
