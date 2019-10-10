@@ -292,6 +292,104 @@ void test_ThreeNodeUnbalancedTree(void){
     free(root);
 }
 
+/*
+    a 
+      - b
+          - d
+              - 
+              - 
+          - e
+              - h   
+                  - l
+                  -
+              - 
+      - c
+          - f
+              - NULL
+              - i
+                  -
+                  - m
+          - g
+              - j
+              - k
+*/
+void test_LargeTree(void){
+    struct node* root;
+    struct node* a;
+    struct node* b;
+    struct node* c;
+    struct node* d;
+    struct node* e;
+    struct node* f;
+    struct node* g;
+    struct node* h;
+    struct node* i;
+    struct node* j;
+    struct node* k;
+    struct node* l;
+    struct node* m;
+
+
+    struct node* lca;
+
+    a = root = new_node('a');
+    b = a->left = new_node('b');
+    c = a->right = new_node('c');
+    d = b->left = new_node('d');
+    e = b->right = new_node('e');
+    f = c->left = new_node('f');
+    g = c->right = new_node('g');
+    h = e->left = new_node('h');
+    i = f->right = new_node('i');
+    j = g->left = new_node('j');
+    k = g->right = new_node('k');
+    l = h->left = new_node('l');
+    m = i->right = new_node('m');
+    
+    TEST_ASSERT_NULL_MESSAGE(get_lca(a, 'z', 'y'), "LCA on large tree did not return as expected");
+    TEST_ASSERT_NULL_MESSAGE(get_lca(a, 'a', 'x'), "LCA on large tree did not return as expected")
+    TEST_ASSERT_NULL_MESSAGE(get_lca(a, 'w', 'k'), "LCA on large tree did not return as expected")
+
+
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(a, get_lca(a, 'a', 'a'), "LCA on large tree did not return as expected");
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(a, get_lca(a, 'a', 'b'), "LCA on large tree did not return as expected");
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(a, get_lca(a, 'a', 'd'), "LCA on large tree did not return as expected");
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(a, get_lca(a, 'a', 'h'), "LCA on large tree did not return as expected");
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(a, get_lca(a, 'a', 'm'), "LCA on large tree did not return as expected");
+
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(b, get_lca(a, 'b', 'l'), "LCA on large tree did not return as expected");
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(b, get_lca(a, 'd', 'h'), "LCA on large tree did not return as expected");
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(b, get_lca(a, 'l', 'd'), "LCA on large tree did not return as expected");
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(b, get_lca(a, 'd', 'e'), "LCA on large tree did not return as expected");
+
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(c, get_lca(a, 'c', 'm'), "LCA on large tree did not return as expected");
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(c, get_lca(a, 'f', 'k'), "LCA on large tree did not return as expected");
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(c, get_lca(a, 'j', 'm'), "LCA on large tree did not return as expected");
+   TEST_ASSERT_EQUAL_PTR_MESSAGE(c, get_lca(a, 'i', 'g'), "LCA on large tree did not return as expected");
+
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(d, get_lca(a, 'd', 'd'), "LCA on large tree did not return as expected");
+
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(e, get_lca(a, 'e', 'e'), "LCA on large tree did not return as expected");
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(e, get_lca(a, 'h', 'e'), "LCA on large tree did not return as expected");
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(e, get_lca(a, 'e', 'l'), "LCA on large tree did not return as expected");
+    
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(f, get_lca(a, 'f', 'f'), "LCA on large tree did not return as expected");
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(f, get_lca(a, 'i', 'f'), "LCA on large tree did not return as expected");
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(f, get_lca(a, 'f', 'm'), "LCA on large tree did not return as expected");
+
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(g, get_lca(a, 'j', 'k'), "LCA on large tree did not return as expected");
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(g, get_lca(a, 'g', 'k'), "LCA on large tree did not return as expected");
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(g, get_lca(a, 'g', 'j'), "LCA on large tree did not return as expected");   
+
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(h, get_lca(a, 'h', 'h'), "LCA on large tree did not return as expected"); 
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(h, get_lca(a, 'l', 'h'), "LCA on large tree did not return as expected"); 
+
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(i, get_lca(a, 'i', 'i'), "LCA on large tree did not return as expected");
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(i, get_lca(a, 'm', 'i'), "LCA on large tree did not return as expected");
+    
+    free(a); free(b); free(c); free(d); free(e); free(f); free(g); free(h); free(i); free(j); free(k); free(l); free(m);
+ 
+}
 
 int main(void){
     UNITY_BEGIN();
@@ -300,5 +398,6 @@ int main(void){
     RUN_TEST(test_TwoNodeTree);
     RUN_TEST(test_ThreeNodeBalancedTree);
     RUN_TEST(test_ThreeNodeUnbalancedTree);
+    RUN_TEST(test_LargeTree);
     return UNITY_END();
 }
