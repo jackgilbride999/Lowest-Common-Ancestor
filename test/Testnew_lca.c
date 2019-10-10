@@ -39,13 +39,13 @@ void test_SingleNodeTree(void){
     // both ints as zero
     root = new_node(0);
     lca = get_lca(root, 0, 0);
- //   TEST_ASSERT_NULL_MESSAGE(lca, "LCA of single node tree was not NULL.")
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 0, "LCA of single node tree was not NULL.");
     free(root);
 
     // both ints different, one is zero
     root = new_node(0);
     lca = get_lca(root, 0, 1);
- //   TEST_ASSERT_NULL_MESSAGE(lca, "LCA of single node tree was not NULL.")
+    TEST_ASSERT_NULL_MESSAGE(lca, "LCA of single node tree was not NULL.");
     free(root);
 
     // both ints different, non-zero values
@@ -57,7 +57,7 @@ void test_SingleNodeTree(void){
     // both ints equal, non-zero values
     root = new_node(40);
     lca = get_lca(root, 40, 40);
-  //  TEST_ASSERT_NULL_MESSAGE(lca, "LCA of single node tree was not NULL.")
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 40, "LCA of single node tree was not NULL.");
     free(root);
 }
 
@@ -75,7 +75,7 @@ void test_TwoNodeTree(void){
     root = new_node(0);
     root -> left = new_node(0);
     lca = get_lca(root, 0, 0);
-   // TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 0, "LCA of a two node tree was not NULL.");
     free(root->left);
     free(root);
 
@@ -83,7 +83,7 @@ void test_TwoNodeTree(void){
     root = new_node(0);
     root -> right = new_node(0);
     lca = get_lca(root, 0, 0);
- //   TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 0, "LCA of a two node tree was not NULL.");
     free(root->right);
     free(root);
 
@@ -91,7 +91,7 @@ void test_TwoNodeTree(void){
     root = new_node(2);
     root -> left = new_node(2);
     lca = get_lca(root, 2, 2);
- //   TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 2, "LCA of a two node tree was not NULL.");
     free(root->left);
     free(root);
 
@@ -99,15 +99,15 @@ void test_TwoNodeTree(void){
     root = new_node(2);
     root -> right = new_node(2);
     lca = get_lca(root, 2, 2);
- //   TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 2, "LCA of a two node tree was not NULL.");
     free(root->right);
     free(root);
 
-    // two non-zero non-equal nodes, with ints as node parameters, leaning left
+    // two non-zero non-equal nodes, with ints as node parameters, leaning left 
     root = new_node(1);
     root -> left = new_node(2);
     lca = get_lca(root, 1, 2);
-  //  TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 1, "LCA of a two node tree was not NULL.");
     free(root->left);
     free(root);
 
@@ -115,7 +115,7 @@ void test_TwoNodeTree(void){
     root = new_node(1);
     root -> right = new_node(2);
     lca = get_lca(root, 1, 2);
- //   TEST_ASSERT_NULL_MESSAGE(lca, "LCA of a two node tree was not NULL.");
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 1, "LCA of a two node tree was not NULL.");
     free(root->right);
     free(root);
 
@@ -137,9 +137,7 @@ void test_TwoNodeTree(void){
 }
 
 /*
-    Test get_lca for a three node balanced tree. This is the first function
-    where some tests should pass, when the function gets passed the
-    keys of the root's two children.
+    Test get_lca for a three node balanced tree.
 */
 void test_ThreeNodeBalancedTree(void){
     struct node* root;
@@ -190,18 +188,12 @@ void test_ThreeNodeBalancedTree(void){
     root -> left = new_node(0);
     root -> right = new_node(1);    
     lca = get_lca(root, 0, 1);
-//    TEST_ASSERT_NULL_MESSAGE(lca, "LCA of three node tree did not have expected value");
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 0, "LCA of three node tree did not have expected value");
     free(root->left);
     free(root->right);
     free(root);      
 
-    // one leaf has the same key as the root
-    // This is an interesting case, we could have the function return NULL
-    // when multiple keys in the tree are the same. However this would require
-    // the function to check all nodes in the tree, which would use extra time
-    // and space for a use case not required by the function. So we can assume 
-    // the existence of a function that checks whether all keys in a tree are 
-    // unique. If all keys are not unique, get_lca's behaviour is undefined.
+    // two leaves have the same key
     root = new_node('a');
     root -> left = new_node('b');
     root -> right = new_node('b');    
@@ -244,7 +236,7 @@ void test_ThreeNodeUnbalancedTree(void){
     root->left = new_node(1);
     root->left->left = new_node(1);
     lca = get_lca(root, 1, 1);
- //   TEST_ASSERT_NULL_MESSAGE(lca, "LCA of three node tree did not have expected value");
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 1, "LCA of three node tree did not have expected value");
     free(root->left->left);
     free(root->left);
     free(root);
@@ -254,7 +246,7 @@ void test_ThreeNodeUnbalancedTree(void){
     root->right = new_node(2);
     root->right->right = new_node(2);
     lca = get_lca(root, 2, 2);
- //   TEST_ASSERT_NULL_MESSAGE(lca, "LCA of three node tree did not have expected value");
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 2, "LCA of three node tree did not have expected value");
     free(root->right->right);
     free(root->right);
     free(root);
@@ -264,9 +256,39 @@ void test_ThreeNodeUnbalancedTree(void){
     root->left = new_node(2);
     root->left->left = new_node(1);
     lca = get_lca(root, 1, 2);
-    //TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 3, "LCA of three node tree did not have expected value");
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 2, "LCA of three node tree did not have expected value");
     free(root->left->left);
     free(root->left);
+    free(root);
+
+    // three distinct values, leaning left where lca is root
+    root = new_node(3);
+    root->left = new_node(2);
+    root->left->left = new_node(1);
+    lca = get_lca(root, 3, 2);
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 3, "LCA of three node tree did not have expected value");
+    free(root->left->left);
+    free(root->left);
+    free(root);
+
+    // three distinct values, leaning left
+    root = new_node(3);
+    root->right = new_node(2);
+    root->right->right = new_node(1);
+    lca = get_lca(root, 1, 2);
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 2, "LCA of three node tree did not have expected value");
+    free(root->right->right);
+    free(root->right);
+    free(root);
+
+    // three distinct values, leaning left where lca is root
+    root = new_node(3);
+    root->right = new_node(2);
+    root->right->right = new_node(1);
+    lca = get_lca(root, 3, 2);
+    TEST_ASSERT_EQUAL_INT64_MESSAGE(lca->key, 3, "LCA of three node tree did not have expected value");
+    free(root->right->right);
+    free(root->right);
     free(root);
 }
 
