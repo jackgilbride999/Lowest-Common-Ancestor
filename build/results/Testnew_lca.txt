@@ -1,10 +1,11 @@
-test/Testnew_lca.c:396:test_EmptyTree:PASS
-test/Testnew_lca.c:397:test_SingleNodeTree:PASS
-test/Testnew_lca.c:398:test_TwoNodeTree:PASS
-test/Testnew_lca.c:399:test_ThreeNodeBalancedTree:PASS
-test/Testnew_lca.c:400:test_ThreeNodeUnbalancedTree:PASS
-test/Testnew_lca.c:401:test_LargeTree:PASS
+test/Testnew_lca.c:418:test_EmptyTree:PASS
+test/Testnew_lca.c:419:test_SingleNodeTree:PASS
+test/Testnew_lca.c:420:test_TwoNodeTree:PASS
+test/Testnew_lca.c:421:test_ThreeNodeBalancedTree:PASS
+test/Testnew_lca.c:422:test_ThreeNodeUnbalancedTree:PASS
+test/Testnew_lca.c:423:test_LargeTree:PASS
+test/Testnew_lca.c:412:test_SampleDAG:FAIL: Expected 0x00007FFFC489B2B0 Was 0x00007FFFC489B330. LCA on large tree did not return as expected
 
 -----------------------
-6 Tests 0 Failures 0 Ignored 
-OK
+7 Tests 1 Failures 0 Ignored 
+FAIL

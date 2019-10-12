@@ -391,6 +391,28 @@ void test_LargeTree(void){
  
 }
 
+void test_SampleDAG(void){
+    struct node* root;
+    struct node* a;
+    struct node* b;
+    struct node* c;
+    struct node* d;
+    struct node* e;
+    struct node* f;
+    struct node* g;
+
+    a = root = new_node('a');
+    b = a->left = new_node('b');
+    c = b->left = new_node('c');
+    d = a->right = new_node('d');
+    e = d->right = new_node('e');
+    f = c->right = e->right = new_node('f');
+    g = f->right = new_node('g');
+
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(e, get_lca(a, 'e', 'f'), "LCA on large tree did not return as expected");
+
+}
+
 int main(void){
     UNITY_BEGIN();
     RUN_TEST(test_EmptyTree);
@@ -399,5 +421,6 @@ int main(void){
     RUN_TEST(test_ThreeNodeBalancedTree);
     RUN_TEST(test_ThreeNodeUnbalancedTree);
     RUN_TEST(test_LargeTree);
+    RUN_TEST(test_SampleDAG);
     return UNITY_END();
 }
