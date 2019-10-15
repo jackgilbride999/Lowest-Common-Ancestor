@@ -70,3 +70,17 @@ struct node * get_lca(struct node * root, int x, int y){
     }
     return NULL;
 }
+
+struct node * get_lca_dag(struct node * all_nodes, struct node * x, struct node * y){
+    // list x_ancestors = find_all_ancestors(all_nodes, x);
+    // list y_ancestors = find_all_ancestors(all_nodes, y);
+    // int depth = MAX_SIZE;
+    // for (int i=0; x_ancestors[i]!=NULL; i++){
+    //  for (int j=0; y_ancestors[j]!=NULL; j++){
+    //      if(x_ancestors[i]==y_ancestors[j] && x_ancestors[i].depth < depth) {
+    //          lca = x_ancestors[i];
+    //          depth = x_ancestors[i].depth;
+    //      }
+    //  }
+    // }
+}
