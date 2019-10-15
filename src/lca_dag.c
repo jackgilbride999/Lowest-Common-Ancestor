@@ -49,10 +49,25 @@ int dequeue(struct queue* q){
     item = q->items[q->front];
     q->front++;
     if(q->front > q->rear){
-        printf("Resetting queue");
         q->front = q->rear = -1;
      }
     return item;
 }
 
-void dfs(int *graph, int* visited, int* edgeTo)
+void bfs(int node, int *graph, int* visited, int* edgeTo){
+    struct queue * queue = createQueue();
+    enqueue(queue, node);
+    while(!isEmpty(queue)){
+        int currentVertex = dequeue(queue);
+        for(int i=0; i<SIZE; i++){
+            if(is_edge(graph, currentVertex, i)){
+                // if there is an edge from the dequeued vertex to the other vertex
+                if(visited[i]==0){
+                    // and if the neighbouring vertex is unvisited
+                    enqueue(queue, i);
+                    visited[i]=1;
+                }
+            }
+        }
+    }
+}
