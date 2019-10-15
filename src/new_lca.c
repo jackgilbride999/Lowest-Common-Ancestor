@@ -2,12 +2,6 @@
 #include <stdlib.h> 
 #include "new_lca.h"
 
-/*
-    This is code for finding the lowest common ancestor for two nodes
-    in a binary tree. The code assumes that all values in the binary
-    tree are unique.
-*/
-
 struct node* new_node(int key) 
 { 
 	struct node* node = (struct node*)malloc(sizeof(struct node)); 
@@ -83,4 +77,8 @@ struct node * get_lca_dag(struct node * all_nodes, struct node * x, struct node 
     //      }
     //  }
     // }
+}
+
+void depth_first_search(struct node * v){
+    
 }
