@@ -25,6 +25,7 @@ int is_edge(int * graph, int i, int j){
 
 struct queue* createQueue() {
     struct queue* q = malloc(sizeof(struct queue));
+    memset(q, 0, sizeof(struct queue));
     q->front = -1;
     q->rear = -1;
     return q;
@@ -54,9 +55,22 @@ int dequeue(struct queue* q){
     return item;
 }
 
-void bfs(int node, int *graph, int* visited, int* edgeTo){
+/*
+    Do a breadth-first search on a graph given
+    a root. edgesTo is a 2D array mapped to a 1D
+    array in row-major order. If there is a path
+    from root to node x, then edgesTo[x][0] will
+    contain the edge connecting x to that path. 
+    If x has multiple parents then edgesTo[x][1] 
+    will also be populated, then edgesTo[x][2] etc.
+    This array can then be traversed from x to find
+    all ancestors of x with respect to root.
+*/
+void bfs(int node, int *graph, int* edgesTo){
     struct queue * queue = createQueue();
+    int* visited = malloc(SIZE*sizeof(int));
     enqueue(queue, node);
+    visited[node] = 1;
     while(!isEmpty(queue)){
         int currentVertex = dequeue(queue);
         for(int i=0; i<SIZE; i++){
@@ -67,7 +81,18 @@ void bfs(int node, int *graph, int* visited, int* edgeTo){
                     enqueue(queue, i);
                     visited[i]=1;
                 }
+                if(edgesTo[i*SIZE]==0){
+                    edgesTo[i*SIZE] = currentVertex;
+                } else{
+                    int j;
+                    for(j = i*SIZE; edgesTo[j]!=0; j++);
+                    edgesTo[j]=currentVertex;
+                }
             }
         }
     }
+}
+
+int lca_dag(int* graph, int root){
+
 }
