@@ -2,6 +2,7 @@
 #include <stdlib.h> 
 #include "new_lca.h"
 #include <limits.h>
+#include <string.h>
 
 /*
     Return a new graph represented by a 2D array mapped to
@@ -68,7 +69,7 @@ int dequeue(struct queue* q){
     This array can then be traversed from x to find
     all ancestors of x with respect to root.
 */
-void bfs(int node, int *graph, int* edgesTo, int* depths){
+/*void bfs(int node, int *graph, int* edgesTo, int* depths){
     int current_depth = 0;
     struct queue * queue = createQueue();
     int* visited = malloc(SIZE*sizeof(int));
@@ -97,7 +98,7 @@ void bfs(int node, int *graph, int* edgesTo, int* depths){
         current_depth++;
     }
 }
-
+/*/
 // function to create a stack of given capacity. It initializes size of 
 // stack as 0 
 struct stack* createStack(unsigned capacity) 
@@ -223,15 +224,14 @@ int * find_lca_dag(int * graph, int root, int x, int y){
 /*
     Recursive function. Find the parents of x. Call function to find
     the parents of x's parents.
-*/
+
 void get_ancestors(int x, int* edgesTo, int * x_ancestors_depth, int depth){
     
 }
 
 /*  
     Find the lowest common ancestor of x and y in the
-    directed acyclic graph in respect to root.
-*/
+    directed acyclic graph in respect to root./
 int lca_dag(int* graph, int root, int x, int y){
     // create the row-major array edgesTo
     int* edgesTo = calloc(0, sizeof(int)*SIZE*SIZE);
@@ -245,7 +245,7 @@ int lca_dag(int* graph, int root, int x, int y){
     get_ancestors(x, edgesTo, x_ancestors_depth, 0); //??
 }
 
-
+*/
 struct node* new_node(int key) 
 { 
 	struct node* node = (struct node*)malloc(sizeof(struct node)); 

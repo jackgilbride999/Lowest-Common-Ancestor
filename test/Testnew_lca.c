@@ -419,8 +419,7 @@ void test_SampleDAG(void){
     create_edge(graph, 'e', 'f');
     create_edge(graph, 'd', 'g');
     create_edge(graph, 'f', 'g');
-    find_lca_dag(graph, 'a', 'e', 'f');
-
+    TEST_ASSERT_EQUAL_INT64_MESSAGE('e', find_lca_dag(graph, 'a', 'e', 'f'), "LCA on DAG did not return as expected");
 }
 
 int main(void){
