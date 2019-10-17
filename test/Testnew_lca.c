@@ -1,5 +1,5 @@
 /* Code to test lca.c using Unity unit testing framework. */
-
+#include "lca_dag.h"
 #include "new_lca.h"
 #include "unity.h"
 #include <assert.h>
@@ -392,7 +392,7 @@ void test_LargeTree(void){
 }
 
 void test_SampleDAG(void){
-    struct node* root;
+   /* struct node* root;
     struct node* a;
     struct node* b;
     struct node* c;
@@ -409,7 +409,17 @@ void test_SampleDAG(void){
     f = c->right = e->right = new_node('f');
     g = f->right = new_node('g');
 
-    TEST_ASSERT_EQUAL_PTR_MESSAGE(e, get_lca(a, 'e', 'f'), "LCA on large tree did not return as expected");
+    TEST_ASSERT_EQUAL_PTR_MESSAGE(e, get_lca(a, 'e', 'f'), "LCA on large tree did not return as expected");*/
+
+    int * graph = create_graph(256);
+    create_edge(graph, 'a', 'b');
+    create_edge(graph, 'b', 'c');
+    create_edge(graph, 'b', 'e');
+    create_edge(graph, 'c','d');
+    create_edge(graph, 'e', 'f');
+    create_edge(graph, 'd', 'g');
+    create_edge(graph, 'f', 'g');
+    find_lca_dag(graph, 'a', 'e', 'f');
 
 }
 
