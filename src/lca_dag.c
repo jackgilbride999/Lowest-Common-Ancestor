@@ -141,7 +141,7 @@ int peek(struct stack* stack)
     return stack->array[stack->top]; 
 }
 
-void find_lca_attempt2_recursive(int * graph, struct stack * stack, int current, int x, int y, struct stack * paths1[], struct stack * paths2[]){
+void find_lca_dag_recursive(int * graph, struct stack * stack, int current, int x, int y, struct stack * paths1[], struct stack * paths2[]){
     push(stack, current);
     if(current==x){
         struct stack * current_stack = createStack(SIZE);
@@ -163,22 +163,22 @@ void find_lca_attempt2_recursive(int * graph, struct stack * stack, int current,
     }
     for(int i=0; i<SIZE; i++){
         if(is_edge(graph, current, i)){
-            find_lca_attempt2_recursive(graph, stack, i, x, y, paths1, paths2);
+            find_lca_dag_recursive(graph, stack, i, x, y, paths1, paths2);
         }
     }
     pop(stack);
     return;
 }
 
-int * find_lca_attempt2(int * graph, int root, int x, int y){
+int * find_lca_dag(int * graph, int root, int x, int y){
     // Stack to keep track of the current path
     struct stack * stack = createStack(SIZE);
     // Arrays to store paths to nodes that we find
     struct stack * paths1[SIZE] = {NULL};
     struct stack * paths2[SIZE] = {NULL};
     // Depth-first-search
-    find_lca_attempt2_recursive(graph, stack, root, x, y, paths1, paths2);
-    int greatestCommonAncestor = -1;
+    find_lca_dag_recursive(graph, stack, root, x, y, paths1, paths2);
+    int lowestCommonAncestor = -1;
     int depth = -1;
     // for all the paths from root to x
     for(int i = 0; paths1[i]!=NULL; i++){
@@ -206,17 +206,17 @@ int * find_lca_attempt2(int * graph, int root, int x, int y){
                     path2Node = path2->array[k];
                 }
                 if(path1Node == path2Node){
-                    greatestCommonAncestor = path1Node;
+                    lowestCommonAncestor = path1Node;
                 }
                 else if(k > depth){
-                    greatestCommonAncestor = currentCommonAncestor;
+                    lowestCommonAncestor = currentCommonAncestor;
                     depth = i;
                     break;
                 }
             }
         }
     }
-    return greatestCommonAncestor;
+    return lowestCommonAncestor;
 }
 
 /*
