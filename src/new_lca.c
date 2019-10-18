@@ -26,79 +26,6 @@ int is_edge(int * graph, int i, int j){
     return (graph[SIZE*i+j] == 1);
 }
 
-struct queue* createQueue() {
-    struct queue* q = malloc(sizeof(struct queue));
-    memset(q, 0, sizeof(struct queue));
-    q->front = -1;
-    q->rear = -1;
-    return q;
-}
-
-/*int isEmpty(struct queue* q) {
-    if(q->rear == -1) 
-        return 1;
-    else 
-        return 0;
-}*/
-
-void enqueue(struct queue* q, int value){
-    if(q->front == -1)
-        q->front = 0;
-    q->rear++;
-    q->items[q->rear] = value;
-}
-
-int dequeue(struct queue* q){
-    int item;
-    item = q->items[q->front];
-    q->front++;
-    if(q->front > q->rear){
-        q->front = q->rear = -1;
-     }
-    return item;
-}
-
-/*
-    Do a breadth-first search on a graph given
-    a root. edgesTo is a 2D array mapped to a 1D
-    array in row-major order. If there is a path
-    from root to node x, then edgesTo[x][0] will
-    contain the edge connecting x to that path. 
-    If x has multiple parents then edgesTo[x][1] 
-    will also be populated, then edgesTo[x][2] etc.
-    This array can then be traversed from x to find
-    all ancestors of x with respect to root.
-*/
-/*void bfs(int node, int *graph, int* edgesTo, int* depths){
-    int current_depth = 0;
-    struct queue * queue = createQueue();
-    int* visited = malloc(SIZE*sizeof(int));
-    enqueue(queue, node);
-    visited[node] = 1;
-    while(!isEmpty(queue)){
-        int currentVertex = dequeue(queue);
-        for(int i=0; i<SIZE; i++){
-            if(is_edge(graph, currentVertex, i)){
-                // if there is an edge from the dequeued vertex to the other vertex
-                if(visited[i]==0){
-                    // and if the neighbouring vertex is unvisited
-                    enqueue(queue, i);
-                    visited[i]=1;
-                    depths[i] = current_depth;
-                }
-                if(edgesTo[i*SIZE]==0){
-                    edgesTo[i*SIZE] = currentVertex;
-                } else{
-                    int j;
-                    for(j = i*SIZE; edgesTo[j]!=0; j++);
-                    edgesTo[j]=currentVertex;
-                }
-            }
-        }
-        current_depth++;
-    }
-}
-/*/
 // function to create a stack of given capacity. It initializes size of 
 // stack as 0 
 struct stack* createStack(unsigned capacity) 
@@ -126,7 +53,6 @@ int isEmpty(struct stack* stack)
 void push(struct stack* stack, int item) 
 { 
     stack->array[++stack->top] = item; 
-    printf("%d pushed to stack\n", item); 
 } 
   
 // Function to remove an item from stack.  It decreases top by 1 
@@ -172,7 +98,7 @@ void find_lca_dag_recursive(int * graph, struct stack * stack, int current, int 
     return;
 }
 
-int * find_lca_dag(int * graph, int root, int x, int y){
+int find_lca_dag(int * graph, int root, int x, int y){
     // Stack to keep track of the current path
     struct stack * stack = createStack(SIZE);
     // Arrays to store paths to nodes that we find
@@ -221,31 +147,6 @@ int * find_lca_dag(int * graph, int root, int x, int y){
     return lowestCommonAncestor;
 }
 
-/*
-    Recursive function. Find the parents of x. Call function to find
-    the parents of x's parents.
-
-void get_ancestors(int x, int* edgesTo, int * x_ancestors_depth, int depth){
-    
-}
-
-/*  
-    Find the lowest common ancestor of x and y in the
-    directed acyclic graph in respect to root./
-int lca_dag(int* graph, int root, int x, int y){
-    // create the row-major array edgesTo
-    int* edgesTo = calloc(0, sizeof(int)*SIZE*SIZE);
-    // call bfs on the graph from the root
-    bfs(root, graph, edgesTo);
-    // allocate an array of the depth of the ancestors of x in respect to root
-    int * x_ancestors_depth = calloc(0, sizeof(int)*SIZE);
-    // same for y
-    int * y_ancestors_depth = calloc(0, sizeof(int)*SIZE);
-    // find the ancestors of x
-    get_ancestors(x, edgesTo, x_ancestors_depth, 0); //??
-}
-
-*/
 struct node* new_node(int key) 
 { 
 	struct node* node = (struct node*)malloc(sizeof(struct node)); 
@@ -307,22 +208,4 @@ struct node * get_lca(struct node * root, int x, int y){
         return result;
     }
     return NULL;
-}
-
-struct node * get_lca_dag(struct node * all_nodes, struct node * x, struct node * y){
-    // list x_ancestors = find_all_ancestors(all_nodes, x);
-    // list y_ancestors = find_all_ancestors(all_nodes, y);
-    // int depth = MAX_SIZE;
-    // for (int i=0; x_ancestors[i]!=NULL; i++){
-    //  for (int j=0; y_ancestors[j]!=NULL; j++){
-    //      if(x_ancestors[i]==y_ancestors[j] && x_ancestors[i].depth < depth) {
-    //          lca = x_ancestors[i];
-    //          depth = x_ancestors[i].depth;
-    //      }
-    //  }
-    // }
-}
-
-void depth_first_search(struct node * v){
-    
 }

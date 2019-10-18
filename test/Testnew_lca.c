@@ -1,5 +1,4 @@
 /* Code to test lca.c using Unity unit testing framework. */
-#include "lca_dag.h"
 #include "new_lca.h"
 #include "unity.h"
 #include <assert.h>
