@@ -1,4 +1,4 @@
-# Lowest Common Ancestor problem in Software Engineering module.
+# Lowest Common Ancestor problem for CSU33012 Software Engineering
 
 ## Description of problem
 The task was to provide a program solution to the Lowest Common Ancestor (LCA) Problem. The goal was to implement this solution using good software engineering practises: using efficient practises, utilizing various tools to increase efficiency, good source control practice and unit testing as a means of checking whether the code fulfilled its use case.  
