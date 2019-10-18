@@ -2,7 +2,7 @@
 
 ## Description of problem
 The task was to provide a program solution to the Lowest Common Ancestor (LCA) Problem. The goal was to implement this solution using good software engineering practises: using efficient practises, utilizing various tools to increase efficiency, good source control practice and unit testing as a means of checking whether the code fulfilled its use case.  
-The first part of the task involved running the LCA solution on a binary tree. The second part of the task was to build on this and provide an implementation that would work on a Directed Acyclic Graph (DAG).
+The first part of the task involved running the LCA solution on a binary tree, which is in the master branch of the repository. The second part of the task was to build on this and provide an implementation that would work on a Directed Acyclic Graph (DAG), which is in the directed-acyclic-graph branch.
 
 ## Implementation and file structure
 I decided to use C as the language to develop my solution in. As a result the repository takes a standard format for software engineering in C: 
