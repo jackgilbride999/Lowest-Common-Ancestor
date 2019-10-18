@@ -1,11 +1,13 @@
-test/Testnew_lca.c:426:test_EmptyTree:PASS
-test/Testnew_lca.c:427:test_SingleNodeTree:PASS
-test/Testnew_lca.c:428:test_TwoNodeTree:PASS
-test/Testnew_lca.c:429:test_ThreeNodeBalancedTree:PASS
-test/Testnew_lca.c:430:test_ThreeNodeUnbalancedTree:PASS
-test/Testnew_lca.c:431:test_LargeTree:PASS
-test/Testnew_lca.c:421:test_SampleDAG:FAIL: Expected 101 Was -1. LCA on DAG did not return as expected
+test/Testnew_lca.c:428:test_EmptyTree:PASS
+test/Testnew_lca.c:429:test_SingleNodeTree:PASS
+test/Testnew_lca.c:430:test_TwoNodeTree:PASS
+test/Testnew_lca.c:431:test_ThreeNodeBalancedTree:PASS
+test/Testnew_lca.c:432:test_ThreeNodeUnbalancedTree:PASS
+test/Testnew_lca.c:433:test_LargeTree:PASS
+test/Testnew_lca.c:408:test_TwoNodeDAG:FAIL: Expected 97 Was -1. LCA on DAG did not return as expected
+test/Testnew_lca.c:415:test_ThreeNodeDAG:FAIL: Expected 97 Was -1. LCA on DAG did not return as expected
+test/Testnew_lca.c:422:test_FourNodeDAG:FAIL: Expected 97 Was -1. LCA on DAG did not return as expected
 
 -----------------------
-7 Tests 1 Failures 0 Ignored 
+9 Tests 3 Failures 0 Ignored 
 FAIL
